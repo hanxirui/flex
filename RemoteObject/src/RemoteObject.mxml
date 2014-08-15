@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955" minHeight="600">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<mx:RemoteObject id="ro" destination="login" fault="faultHandler(event)"
+						 result="results(event)" endpoint="http://localhost:9090/RemoteObjectJava/messagebroker/amf">
+		</mx:RemoteObject>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import mx.controls.Alert;
+		
+		[Bindable]
+		var returnValue:String;
+		var username1:String;
+		var password1:String;
+		function sendRequest():void{
+		username1=username.text;
+		password1=password.text;				
+		ro.validate(username1,password1);
+		ro.addEventListener(ResultEvent.RESULT,results);
+		
+		}
+		
+		function results(event:ResultEvent):void{
+		returnValue=event.result as String;		
+		}
+		
+		function faultHandler(event:FaultEvent):void{
+		Alert.show(event.fault.toString());
+		}
+		]]>
+	</fx:Script>
+	
+	
+	<mx:Panel width="400" height="400" layout="absolute" title="用户登录">
+		<mx:Label x="50" y="50" width="50" text="用户名"></mx:Label>
+		<mx:Label x="50" y="75" width="50" text="密码"></mx:Label>
+		<mx:TextInput id="username" x="75" y="50"/>
+		<mx:TextInput id="password" x="75" y="75"/>
+		<mx:Button x="50" y="100" label="登录" click="sendRequest()"/>
+		<mx:Label x="50" y="130" text="{returnValue}"/>	
+	</mx:Panel>
+</s:Application>

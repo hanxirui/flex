@@ -1,0 +1,1 @@
+java和flex使用blazeDS通信样例
