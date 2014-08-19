@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+	          xmlns:model="com.hxr.cairngormdemo.model.*" xmlns:control="com.hxr.cairngormdemo.control.*" xmlns:business="com.hxr.cairngormdemo.business.*"
+	creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.adobe.cairngorm.control.CairngormEventDispatcher;       
+			import com.hxr.cairngormdemo.event.CountEvent;
+			import com.hxr.cairngormdemo.control.CountFrontControl;
+			import flash.utils.setTimeout;
+			import com.hxr.cairngormdemo.model.CountModelLocator;
+			import mx.events.FlexEvent;
+			import com.hxr.cairngormdemo.vo.Num;
+			
+			private function loggingHandler(evt:MouseEvent):void
+			{
+				var num:Num = new Num();
+				num.startNum = CountModelLocator.getInstance().count;
+				var countEvent:CountEvent = new CountEvent(num);
+				CairngormEventDispatcher.getInstance().dispatchEvent(countEvent);
+			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				lable.text = "0";
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+	<control:CountFrontControl/>
+	<business:Services/>
+	</fx:Declarations>
+	<s:Label id="lable" x="430" y="158" width="66" height="22" text="{CountModelLocator.getInstance().count}"/>
+	<s:Button id="button" x="430" y="201" label="start" width="66" click="loggingHandler(event)"/>
+		
+</s:Application>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cairngorm:ServiceLocator xmlns:fx="http://ns.adobe.com/mxml/2009"
+						  xmlns:s="library://ns.adobe.com/flex/spark"
+						  xmlns:mx="library://ns.adobe.com/flex/mx"
+						  xmlns:cairngorm="com.adobe.cairngorm.business.*">
+	<fx:Declarations>
+		<s:RemoteObject id="counting" destination="countingService"  endpoint="http://127.0.0.1:9090/cairngormDemoJava/messagebroker/amf"/>
+	</fx:Declarations>   
+</cairngorm:ServiceLocator>
