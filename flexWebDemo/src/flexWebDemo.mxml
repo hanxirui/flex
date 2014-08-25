@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application name="Halo_Accordion_headerStyleName_skin_test"
+			   xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" viewSourceURL="srcview/index.html">	
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/halo";
+		
+		.accordionHeaderStyles {
+			skin: ClassReference("skins.CustomAccordionHeaderSkin");
+		}
+	</fx:Style>
+	
+	<mx:Accordion id="accordion"
+				  headerStyleName="accordionHeaderStyles"
+				  width="80%" height="80%"
+				  horizontalCenter="0" verticalCenter="0">
+		<mx:VBox label="Red" />
+		<mx:VBox label="Orange" />
+		<mx:VBox label="Yellow" />
+		<mx:VBox label="Green" />
+		<mx:VBox label="Blue" />
+	</mx:Accordion>
+	
+</s:Application>
