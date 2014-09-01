@@ -15,8 +15,10 @@ package com.hxr.flex.as3guide.date
 			minuteTimer.addEventListener(TimerEvent.TIMER, onTick); 
 			minuteTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete); 
 			
+			minuteTimer.repeatCount=10;
 			// starts the timer ticking 
 			minuteTimer.start(); 
+			
 		} 
 		
 		public function onTick(event:TimerEvent):void  

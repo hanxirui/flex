@@ -23,7 +23,7 @@ package
 //			var basicDate:BasicDate = new BasicDate();
 //			basicDate.dispaly();
 //			
-//			var shortTimer:ShortTimer = new ShortTimer();
+			var shortTimer:ShortTimer = new ShortTimer();
 //			
 //			var str:BasicString = new BasicString();
 //			str.display();
