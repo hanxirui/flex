@@ -3,7 +3,9 @@ package com.hxr.flex.as3guide.display
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.ColorTransform;
 	
 	public class CustomCircle extends Sprite 
 	{
@@ -14,6 +16,8 @@ package com.hxr.flex.as3guide.display
 		var offsetX:Number; 
 		var offsetY:Number; 
 		var draggedObject:DisplayObject; 
+		// draw a circle and add it to the display list 
+		var circle:Sprite = new Sprite(); 
 		public function CustomCircle(xInput:Number,  
 									 yInput:Number,  
 									 rInput:Number,  
@@ -23,11 +27,40 @@ package com.hxr.flex.as3guide.display
 			yPos = yInput; 
 			radius = rInput; 
 			color = colorInput; 
-			this.graphics.beginFill(color); 
-			this.graphics.drawCircle(xPos, yPos, radius); 
-			this.graphics.endFill(); 
-			this.addEventListener(MouseEvent.MOUSE_DOWN, startDragging); 
-			this.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
+			circle.graphics.beginFill(color); 
+			circle.graphics.drawCircle(xPos, yPos, radius); 
+			circle.graphics.endFill(); 
+			circle.addEventListener(MouseEvent.MOUSE_DOWN, startDragging); 
+			circle.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
+			
+			this.addChild(circle);
+			// When this animation starts, this function is called every frame. 
+			// The change made by this function (updated to the screen every 
+			// frame) is what causes the animation to occur. 
+			function fadeCircle(event:Event):void 
+			{ 
+				circle.alpha -= .05; 
+				
+				if (circle.alpha <= 0) 
+				{ 
+					circle.removeEventListener(Event.ENTER_FRAME, fadeCircle); 
+				} 
+			} 
+			
+			function startAnimation(event:MouseEvent):void 
+			{ 
+				// Get access to the ColorTransform instance associated with this object. 
+				var colorInfo:ColorTransform = circle.transform.colorTransform; 
+				// Set the color of the ColorTransform object. 
+				colorInfo.color = 0x003399; 
+				// apply the change to the display object 
+				circle.transform.colorTransform = colorInfo; 
+				
+				circle.addEventListener(Event.ENTER_FRAME, fadeCircle); 
+			} 
+			
+			circle.addEventListener(MouseEvent.CLICK, startAnimation);
+			
 		} 
 
 		

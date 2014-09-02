@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:example="com.hxr.flex.spritearranger.*"
+				xmlns="*" 
+				width="100%" 
+				height="100%"
+				creationComplete="initApp()">
+	
+	<fx:Script>
+		<![CDATA[
+		import com.hxr.flex.geometricshapes.IGeometricShape;
+		import com.hxr.flex.geometricshapes.GeometricShapeFactory;
+		import com.hxr.flex.geometricshapes.RegularPolygon;
+		import com.hxr.flex.spritearranger.GeometricSprite;
+		import com.hxr.flex.geometricshapes.Circle;
+		
+		import flash.display.Shape;
+		
+		public function initApp():void
+		{
+		canvas.initCanvas(0xFFFFFF, 0xCCCCCC);
+		}
+		
+		public function addShape():void
+		{
+		var shapeName:String = shapeNameCbo.selectedLabel;
+		this.canvas.addShape(shapeName, shapeSizeNs.value);
+		
+		describeShapes();
+		}
+		
+		public function describeShapes():void
+		{
+		if (GeometricSprite.selectedSprite != null)
+		{
+		this.selectedSpriteTxt.text = GeometricSprite.selectedSprite.toString();
+		}
+		this.outputTxt.text = this.canvas.describeChildren();
+		} 
+		
+		public function moveToBack():void
+		{
+		if (GeometricSprite.selectedSprite != null)
+		{
+		this.canvas.moveToBack(GeometricSprite.selectedSprite);
+		this.outputTxt.text = this.canvas.describeChildren();
+		}
+		}
+		
+		public function moveDown():void
+		{
+		if (GeometricSprite.selectedSprite != null)
+		{
+		this.canvas.moveDown(GeometricSprite.selectedSprite);
+		this.outputTxt.text = this.canvas.describeChildren();
+		}
+		}
+		
+		public function moveUp():void
+		{
+		if (GeometricSprite.selectedSprite != null)
+		{
+		this.canvas.moveUp(GeometricSprite.selectedSprite);
+		this.outputTxt.text = this.canvas.describeChildren();
+		}
+		}
+		
+		public function moveToFront():void
+		{
+		if (GeometricSprite.selectedSprite != null)
+		{
+		this.canvas.moveToFront(GeometricSprite.selectedSprite);
+		this.outputTxt.text = this.canvas.describeChildren();
+		}
+		}
+		]]>
+	</fx:Script>
+	
+	<mx:Label id="title" text="Sprite Arranger Example" fontSize="24"/>
+	<mx:Text id="subtitle" text="From Programming ActionScript 3.0, Chapter 12: Display programming" width="100%" textAlign="center" fontSize="12" />
+	
+	<mx:Panel title="Add and Arrange Shapes" verticalGap="0">
+		
+		<mx:ControlBar width="100%" horizontalAlign="center" borderStyle="outset">
+			<mx:Label text="Shape to add:" /> 
+			<mx:ComboBox id="shapeNameCbo">
+				<mx:dataProvider>									
+						<fx:String>Circle</fx:String> 
+						<fx:String>Triangle</fx:String> 
+						<fx:String>Square</fx:String>					
+				</mx:dataProvider> 
+			</mx:ComboBox>
+			
+			<mx:Label text="Size in pixels:" />
+			<mx:NumericStepper id="shapeSizeNs" minimum="10" maximum="100" stepSize="10" value="50"/>
+			
+			<mx:Button id="addBtn" label="Add Shape" click="addShape()"/> 
+			
+		</mx:ControlBar>
+		
+		<mx:VBox width="100%" height="100%" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" backgroundColor="0xEEEEFF">
+			
+			<mx:HBox width="100%">
+				<mx:Label text="Drawing area:" width="100%" />
+				<mx:Spacer width="100%" />
+				<mx:Button id="moveToBackBtn" label="Move to Back" click="moveToBack()" />
+				<mx:Button id="moveDownBtn" label="Move Down" click="moveDown()" width="80" />
+				<mx:Button id="moveUpBtn" label="Move Up" click="moveUp()" width="80" />
+				<mx:Button id="moveToFrontBtn" label="Move to Front" click="moveToFront()" />
+			</mx:HBox>
+			
+			<example:DrawingCanvas id="canvas" width="500" height="200" mouseUp="describeShapes();" mouseDown="describeShapes();" />
+			
+			<mx:Label text="Child display objects:" width="100%" />
+			<mx:TextArea id="outputTxt" width="100%" height="120" editable="false" />     
+			
+			<mx:HBox width="100%">
+				<mx:Label text="Selected sprite:" />
+				<mx:Label id="selectedSpriteTxt" text="none" />
+			</mx:HBox>   
+			
+		</mx:VBox>   
+	</mx:Panel>
+	
+</s:Application>
