@@ -8,16 +8,19 @@ package
 	import com.hxr.flex.as3guide.display.CustomRect;
 	import com.hxr.flex.as3guide.display.PositionTest;
 	import com.hxr.flex.as3guide.display.ScrollRect;
+	import com.hxr.flex.as3guide.geom.BasicPoint;
 	import com.hxr.flex.as3guide.json.BasicJson;
 	import com.hxr.flex.as3guide.string.BasicString;
 	import com.hxr.flex.as3guide.string.MiddleString;
 	import com.hxr.flex.as3guide.xml.BasicXML;
 	import com.hxr.flex.as3guide.xml.MiddleXML;
 	
+	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.ColorTransform;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.utils.Timer;
 	
@@ -44,11 +47,11 @@ package
 //			mArr.display();
 //			
 			var circle:CustomCircle = new CustomCircle(20,20,20,0x00FF00);
-//			
+						this.addChild(circle);		
+			//			circle.scaleX=30;
+			//			circle.scaleY=30;	
 //			var rect:CustomRect = new CustomRect(20,20,20,0xFF0000);
-			this.addChild(circle);		
-//			circle.scaleX=30;
-//			circle.scaleY=30;		
+	
 //			this.addChild(rect);
 			
 			
@@ -86,7 +89,21 @@ package
 //		    var pt:PositionTest = new PositionTest();
 //			this.addChild(pt);
 			
-	
+//	        var p:BasicPoint = new BasicPoint();
+//			p.display();
+			
+//			var rect1:Rectangle = new Rectangle(0, 0, 100, 100); 
+//			trace(rect1);
+//			
+//			var circle:Shape = new Shape(); 
+//			circle.graphics.lineStyle(2, 0xFF0000); 
+//			circle.graphics.drawCircle(250, 250, 100); 
+//			addChild(circle); 
+//			var circleBounds:Rectangle = circle.getBounds(stage); 
+//			var target1:Rectangle = new Rectangle(0, 0, 100, 100); 
+//			trace(circleBounds.intersects(target1)); // false 
+//			var target2:Rectangle = new Rectangle(0, 0, 300, 300); 
+//			trace(circleBounds.intersects(target2)); // true
 			
 		}
 	}

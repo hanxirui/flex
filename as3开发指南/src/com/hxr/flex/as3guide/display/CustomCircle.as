@@ -17,7 +17,9 @@ package com.hxr.flex.as3guide.display
 		var offsetY:Number; 
 		var draggedObject:DisplayObject; 
 		// draw a circle and add it to the display list 
-		var circle:Sprite = new Sprite(); 
+		//		如果测试圆形的隐藏，则需要放开注释的部分，如果测试拖动功能，则要保持注释。
+		//		不同之处在于，圆形是在哪儿定义
+		//		var circle:Sprite = new Sprite(); 
 		public function CustomCircle(xInput:Number,  
 									 yInput:Number,  
 									 rInput:Number,  
@@ -27,42 +29,47 @@ package com.hxr.flex.as3guide.display
 			yPos = yInput; 
 			radius = rInput; 
 			color = colorInput; 
-			circle.graphics.beginFill(color); 
-			circle.graphics.drawCircle(xPos, yPos, radius); 
-			circle.graphics.endFill(); 
-			circle.addEventListener(MouseEvent.MOUSE_DOWN, startDragging); 
-			circle.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
+			//			circle.graphics.beginFill(color); 
+			//			circle.graphics.drawCircle(xPos, yPos, radius); 
+			//			circle.graphics.endFill(); 
+			//			circle.addEventListener(MouseEvent.MOUSE_DOWN, startDragging); 
+			//			circle.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
+			graphics.beginFill(color); 
+			graphics.drawCircle(xPos, yPos, radius); 
+			graphics.endFill(); 
+			addEventListener(MouseEvent.MOUSE_DOWN, startDragging); 
+			addEventListener(MouseEvent.MOUSE_UP, stopDragging);
 			
-			this.addChild(circle);
+			//			this.addChild(circle);
 			// When this animation starts, this function is called every frame. 
 			// The change made by this function (updated to the screen every 
 			// frame) is what causes the animation to occur. 
-			function fadeCircle(event:Event):void 
-			{ 
-				circle.alpha -= .05; 
-				
-				if (circle.alpha <= 0) 
-				{ 
-					circle.removeEventListener(Event.ENTER_FRAME, fadeCircle); 
-				} 
-			} 
+			//			function fadeCircle(event:Event):void 
+			//			{ 
+			//				circle.alpha -= .05; 
+			//				
+			//				if (circle.alpha <= 0) 
+			//				{ 
+			//					circle.removeEventListener(Event.ENTER_FRAME, fadeCircle); 
+			//				} 
+			//			} 
+			//			
+			//			function startAnimation(event:MouseEvent):void 
+			//			{ 
+			//				// Get access to the ColorTransform instance associated with this object. 
+			//				var colorInfo:ColorTransform = circle.transform.colorTransform; 
+			//				// Set the color of the ColorTransform object. 
+			//				colorInfo.color = 0x003399; 
+			//				// apply the change to the display object 
+			//				circle.transform.colorTransform = colorInfo; 
+			//				
+			//				circle.addEventListener(Event.ENTER_FRAME, fadeCircle); 
+			//			} 
 			
-			function startAnimation(event:MouseEvent):void 
-			{ 
-				// Get access to the ColorTransform instance associated with this object. 
-				var colorInfo:ColorTransform = circle.transform.colorTransform; 
-				// Set the color of the ColorTransform object. 
-				colorInfo.color = 0x003399; 
-				// apply the change to the display object 
-				circle.transform.colorTransform = colorInfo; 
-				
-				circle.addEventListener(Event.ENTER_FRAME, fadeCircle); 
-			} 
-			
-			circle.addEventListener(MouseEvent.CLICK, startAnimation);
+			//			circle.addEventListener(MouseEvent.CLICK, startAnimation);
 			
 		} 
-
+		
 		
 		// This function is called when the mouse button is pressed. 
 		public function startDragging(event:MouseEvent):void 
@@ -82,7 +89,7 @@ package com.hxr.flex.as3guide.display
 			// tell Flash Player to start listening for the mouseMove event 
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, dragCircle); 
 			
-
+			
 		} 
 		
 		// This function is called when the mouse button is released. 
@@ -107,6 +114,6 @@ package com.hxr.flex.as3guide.display
 			event.updateAfterEvent(); 
 		} 
 		
-
+		
 	}
 }
