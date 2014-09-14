@@ -8,6 +8,7 @@ package
 	import com.hxr.flex.as3guide.display.CustomRect;
 	import com.hxr.flex.as3guide.display.PositionTest;
 	import com.hxr.flex.as3guide.display.ScrollRect;
+	import com.hxr.flex.as3guide.geom.BasicMatrix;
 	import com.hxr.flex.as3guide.geom.BasicPoint;
 	import com.hxr.flex.as3guide.json.BasicJson;
 	import com.hxr.flex.as3guide.string.BasicString;
@@ -46,8 +47,8 @@ package
 //			var mArr:MiddleArray = new MiddleArray();
 //			mArr.display();
 //			
-			var circle:CustomCircle = new CustomCircle(20,20,20,0x00FF00);
-						this.addChild(circle);		
+//			var circle:CustomCircle = new CustomCircle(20,20,20,0x00FF00);
+//						this.addChild(circle);		
 			//			circle.scaleX=30;
 			//			circle.scaleY=30;	
 //			var rect:CustomRect = new CustomRect(20,20,20,0xFF0000);
@@ -105,6 +106,8 @@ package
 //			var target2:Rectangle = new Rectangle(0, 0, 300, 300); 
 //			trace(circleBounds.intersects(target2)); // true
 			
+			var matrix:BasicMatrix = new BasicMatrix(0, 0, 60, 60);
+			this.addChild(matrix);
 		}
 	}
 }
