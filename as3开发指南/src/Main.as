@@ -8,8 +8,10 @@ package
 	import com.hxr.flex.as3guide.display.CustomRect;
 	import com.hxr.flex.as3guide.display.PositionTest;
 	import com.hxr.flex.as3guide.display.ScrollRect;
+	import com.hxr.flex.as3guide.geom.BasicBessel;
 	import com.hxr.flex.as3guide.geom.BasicMatrix;
 	import com.hxr.flex.as3guide.geom.BasicPoint;
+	import com.hxr.flex.as3guide.geom.BasicTriangle;
 	import com.hxr.flex.as3guide.json.BasicJson;
 	import com.hxr.flex.as3guide.string.BasicString;
 	import com.hxr.flex.as3guide.string.MiddleString;
@@ -106,8 +108,37 @@ package
 //			var target2:Rectangle = new Rectangle(0, 0, 300, 300); 
 //			trace(circleBounds.intersects(target2)); // true
 			
-			var matrix:BasicMatrix = new BasicMatrix(0, 0, 60, 60);
-			this.addChild(matrix);
+//			var matrix:BasicMatrix = new BasicMatrix(0, 0, 60, 60);
+//			this.addChild(matrix);
+//			
+//			var triangle:BasicTriangle = new BasicTriangle();	
+//			this.addChild(triangle.getTriangle());
+			
+//			var bessel:BasicBessel = new BasicBessel();
+//			this.addChild(bessel.getBessel());
+			
+			var squareSize:uint = 100; 
+			var square:Shape = new Shape(); 
+			square.graphics.beginFill(0xFF0000, 0.5); 
+			square.graphics.drawRect(0, 0, squareSize, squareSize); 
+			square.graphics.beginFill(0x00FF00, 0.5); 
+			square.graphics.drawRect(200, 0, squareSize, squareSize); 
+			square.graphics.beginFill(0x0000FF, 0.5); 
+			square.graphics.drawRect(400, 0, squareSize, squareSize); 
+			square.graphics.endFill(); 
+			this.addChild(square);
+//			在 Sprite 或 MovieClip 对象中，使用 graphics 属性创建的绘制内容始终出现在该对象包含的所有子级显示对象的后面。另外，graphics 属性内容不是单独的显示对象，因此，它不会出现在 Sprite 或 MovieClip 对象的子级列表中。例如，以下 Sprite 对象使用其 graphics 属性来绘制圆，并且其子级显示对象列表中包含一个 TextField 对象：
+//			请注意，TextField 将出现在使用 graphics 对象绘制的圆的上面。
+			var mySprite:Sprite = new Sprite(); 
+			mySprite.graphics.beginFill(0xFFCC00); 
+			mySprite.graphics.drawCircle(30, 30, 30); 
+			var label:TextField = new TextField(); 
+			label.width = 200; 
+			label.text = "They call me mellow yellow..."; 
+			label.x = 20; 
+			label.y = 20; 
+			mySprite.addChild(label); 
+			this.addChild(mySprite);
 		}
 	}
 }
